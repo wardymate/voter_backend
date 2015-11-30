@@ -1,2 +1,20 @@
-No ideas yet
-<a href="#">Add an idea</a>
+<%if @ideas.any? %>
+  <ul>
+    <% @ideas.each do |idea|%>
+      <li>
+        <p><%= link_to idea.name, idea_path(idea) %></p>
+        <p><%= idea.description %></p>
+        <%= idea.likes_number %>
+        <i></i><%= link_to 'like', new_like_path({"idea_id" =>"#{idea.id}"}) %>
+        <i></i><%= link_to 'dislike', dislike_path({"idea_id" =>"#{idea.id}"}) %>
+
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No ideas yet</p>
+
+<% end %>
+<% if user_signed_in? %>
+  <a href="/ideas/new">Add an idea</a>
+<% end %>

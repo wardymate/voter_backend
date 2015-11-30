@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
-
+gem 'database_cleaner', '~> 1.4.1'
+gem 'devise'
+gem 'factory_girl_rails'
+gem 'material_design_lite-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
@@ -45,7 +48,7 @@ group :development, :test do
 end
 
 group :test do
-
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'capybara'
 
