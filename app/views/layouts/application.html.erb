@@ -8,25 +8,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">Idea Voter</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <% if user_signed_in? %>
-          <li><%= link_to "Sign out", destroy_user_session_path, method: :delete%></li>
-        <% else %>
-          <li><%= link_to "Sign in", new_user_session_path %></li>
-          <li><%= link_to "Sign up", new_user_registration_path %></li>
-        <% end %>
-      </ul>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Idea Voter</span>
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <% if user_signed_in? %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "mdl-navigation__link" %>
+      <% else %>
+        <%= link_to "Sign in", new_user_session_path, class: "mdl-navigation__link"%>
+        <%= link_to "Sign up", new_user_registration_path, class: "mdl-navigation__link" %>
+      <% end %>
+      </nav>
     </div>
-  </nav>
-
-<div>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
-</div>
-
+    </header>
+    <div>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>
