@@ -1,4 +1,25 @@
 module LikesHelper
+
+  def add_like
+    set_ideas_and_likes
+    unless previous_like?
+      new_plus_like
+    end
+    if previous_like_value == -1
+      previous_like.first.destroy
+    end
+  end
+
+  def add_dislike
+    set_ideas_and_likes
+    unless previous_like?
+      new_dislike
+    end
+    if previous_like_value == 1
+      previous_like.first.destroy
+    end
+  end
+
   def previous_like?
     previous_like.length == 1
   end
@@ -12,19 +33,11 @@ module LikesHelper
   end
 
   def new_plus_like
-    @like = Like.new
-    @like.user_id = current_user.id
-    @like.idea = @idea
-    @like.value = 1
-    @like.save
+    Like.create(user_id: current_user.id, idea: @idea, value: 1)
   end
 
   def new_dislike
-    @like = Like.new
-    @like.user_id = current_user.id
-    @like.idea = @idea
-    @like.value = -1
-    @like.save
+    Like.create(user_id: current_user.id, idea: @idea, value: -1)
   end
 
   def set_ideas_and_likes
