@@ -1,4 +1,6 @@
 class Idea < ActiveRecord::Base
+  include ActiveModel::Serialization
+
   belongs_to :user
   has_many :likes, dependent: :destroy
   validates :name, length: {minimum: 3}, uniqueness: true
