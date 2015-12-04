@@ -33,10 +33,16 @@ module LikesHelper
   end
 
   def new_plus_like
+    Pusher.trigger('test_channel', 'my_event', {
+      message: 'new like'
+    })
     Like.create(user_id: current_user.id, idea: @idea, value: 1)
   end
 
   def new_dislike
+    Pusher.trigger('test_channel', 'my_event', {
+      message: 'new dislike'
+    })
     Like.create(user_id: current_user.id, idea: @idea, value: -1)
   end
 
